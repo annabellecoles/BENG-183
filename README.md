@@ -30,12 +30,19 @@ Determines when iteration ceases. Convergence occurs when there is no longer any
 <details>
 <summary>Visualizing the Algorithm</summary>
 <br>
-Once the data has been normalized, the data must be dimensionaly reduced. This is a necessary step prior to clustering because k-means clustering measures the eucladian distance between data points, and in high-dimensionality space, this is very difficult to measure. One type of dimensionality reduction is PCA (principal component analysis). After performing dimensionality reduction, each cell is represented by a single data point and is mapped to a graphical location. 
+<img width="700" alt="Screen Shot 2022-12-06 at 11 57 55" src="https://user-images.githubusercontent.com/59674595/206010456-5e9b5402-299e-4818-bee3-e9903d553019.png">
+ 
+ 
+<img width="700" alt="Screen Shot 2022-12-06 at 11 58 04" src="https://user-images.githubusercontent.com/59674595/206010467-26fd65f0-b77e-484e-9602-49e3129d9e37.png">
+ 
+ 
+<img width="700" alt="Screen Shot 2022-12-06 at 11 59 08" src="https://user-images.githubusercontent.com/59674595/206010476-6da33c65-1e12-47e2-a50d-f13959ecde3c.png">
+
 </details>
 
-<img src="https://user-images.githubusercontent.com/59674595/205348356-2c56f50a-6a37-4801-bba8-80fc99be3ca1.png" width="400" height="500">
 
-**Improvement**
+
+**Improving the Algorithm**
 A heavy focus of improving the algorithm is on the initialization of centroids. Apart from randomly select the initial centroids, other techniques are adopted by scientists as well. One of these include generating random partitions, that is, all the points are put into random clusters and the centroids are calculated afterwards. This works especially well when the clusters highly overlap, but in other cases randomization still has its advantages. 
 One another way is the furthest point heuristic, also known as Maxmin. An arbitrary point is picked as the first centroid, then for each of the following centroids, the point that is furthest from its nearest existing centroid is selected. 
 When initialization is random, repeating k-means can also significantly increase the accuracy of the clustering result. And if the clusters are separated, initialization dominates the performance of the algorithm. 
