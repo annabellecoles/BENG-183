@@ -44,16 +44,9 @@ Convergence is where the results of the algorithm no longer change. Aka. once ce
 Convergence
 Determines when iteration ceases. Convergence occurs when there is no longer any change in cluster assignment and centroid location. 
 
-<p align="center">
-<img src="https://user-images.githubusercontent.com/59674595/206014711-3d785fb2-78d8-464c-8642-b75bc7406ea0.gif" width="500">
-</p>
-
-<!-- <p align="center"> -->
-<!-- ![kmeans clustering algorithm vis](https://user-images.githubusercontent.com/59674595/206014711-3d785fb2-78d8-464c-8642-b75bc7406ea0.gif) -->
-<!-- </p> -->
 
 <details>
-<summary>Visualizing the Algorithm (storyboard)</summary>
+<summary>Visualizing the Algorithm</summary>
 <br>
  
 <p align="center">
