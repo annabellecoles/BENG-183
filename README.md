@@ -15,23 +15,53 @@ Convergence
 Determines when iteration ceases. Convergence occurs when there is no longer any change in cluster assignment and centroid location. 
 
 
+<details>
+<summary>Visualizing the Algorithm</summary>
+<br>
+Once the data has been normalized, the data must be dimensionaly reduced. This is a necessary step prior to clustering because k-means clustering measures the eucladian distance between data points, and in high-dimensionality space, this is very difficult to measure. One type of dimensionality reduction is PCA (principal component analysis). After performing dimensionality reduction, each cell is represented by a single data point and is mapped to a graphical location. 
+</details>
 
 <img src="https://user-images.githubusercontent.com/59674595/205348356-2c56f50a-6a37-4801-bba8-80fc99be3ca1.png" width="400" height="500">
 
-TODO citation: Statistics for Machine Learning,by Pratap Dangeti, Released July 2017 https://www.oreilly.com/library/view/statistics-for-machine/9781788295758/c71ea970-0f3c-4973-8d3a-b09a7a6553c1.xhtml
+**Improvement**
+A heavy focus of improving the algorithm is on the initialization of centroids. Apart from randomly select the initial centroids, other techniques are adopted by scientists as well. One of these include generating random partitions, that is, all the points are put into random clusters and the centroids are calculated afterwards. This works especially well when the clusters highly overlap, but in other cases randomization still has its advantages. 
+One another way is the furthest point heuristic, also known as Maxmin. An arbitrary point is picked as the first centroid, then for each of the following centroids, the point that is furthest from its nearest existing centroid is selected. 
+When initialization is random, repeating k-means can also significantly increase the accuracy of the clustering result. And if the clusters are separated, initialization dominates the performance of the algorithm. 
 
-Advantages
+***
+
+**Advantages**
  
-Simple algorithm 
-Time complexity: linear 
+- Simple algorithm that yields simple results
+  * The k-means clustering algorithm is an unsupervised learning algorithm. This means that we do not need to come up with a training set or labels. We can simply select a k-value and get our results.
+- Faster time complexity than hierarchical clustering
+  * The k-means clustering algorithm uses linear time complexity, which is advantageous over other clustering algorithms such as hierarchical clustering.
+- Changes can be easily made to influence clustering
+  * Changes can be made to the k-value that significantly impact the clusters that occur. This means that the k-means algorithm allows for more manipulation of the dataset. The algorithm can also stop due to convergence or after a set number of iterations.
 
-Disadvantages
+
+**Disadvantages**
+
+- Manual selection of k 
+  * The algorithm itself does not guarantee the development of the optimal clustering result, nor does it derive the k value after the algorithm begins. A proper k should be chosen beforehand. 
+- Varying result for different runs
+  * The initial cluster centers are randomly selected from all the data points of the given input. Thus the clustering can be unstable in different runs. 
+- Limited input data
+  * The input dataset is required to be numerical, since the notion of distance needs be defined in order to assign data points to their “nearest” centroid. 
+- Trouble with messy data
+  * K means clustering generates uniform clusters, so it does not function well for unevenly spread data. For data of different density, the clustering would not always be the “best-fit”. The algorithm cannot nicely handle outliers either, and the resulted pattern would be vague. 
+
+
+
+Source: Pasi Franti, Sami Sieranoja. How much can k-means be improved by using better initialization and repeats?, Pattern Recognition, Volume 93, 2019, Pages 95-112, ISSN 0031-3203, https://doi.org/10.1016/j.patcog.2019.04.014.
+
+***
 
 **Applications**
 
 K-means Clustering is a very useful and applicable algorithm both in biology and other fields. For example, in biology, k-means clustering can be applied to scRNA-seq data to cluster the data into cell types and reveal patterns in the data. Furthermore, k-means clustering can be used in gene co-expression networks to reveal relationships between differnet genes and their expression. Outside of biology, k-means clustering is an algorithm that can be used in marketing to cluster customers, and in geographic analysis can be used to cluster an area into different regions depending on factors such as crime, average household size, etc. 
 
-CASE STUDY: Using K-means clustering to identify cell types in scRNA-seq data 
+**CASE STUDY: Using K-means clustering to identify cell types in scRNA-seq data**
 
 <details>
 <summary>1. Pre-processing</summary>
