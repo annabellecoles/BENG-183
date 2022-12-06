@@ -12,10 +12,28 @@ Supervised vs. Unsupervised Learning
 * Supervised learning involves the implementation of a labeled dataset and a test dataset. The labeled dataset is pre-labeled bye the user in order to ‘teach’ the algorithm how to deal with the test dataset.
 * Unsupervised learning involves the implementation of machine learning algorithms to analyze and cluster datasets. Unsupervised learning algorithms complete this without the need for pre-labeling, and are therefore unsupervised.
 
-**Selection of k**
+**Selecting a K value**
+
+There are many different approaches used for selecting k. 
+
+* One simple way is to set k as $\sqrt(\frac{n}{2})$, where n is the size of the data set. 
+
+* The elbow method is a conventional way of determining the number of clusters. As shown in the figure, it finds the point where the clustering score becomes stabilized. The corresponding x-corrdinate value gives us the optimal cluster number. There are cases where the “elbow” shape is not obvious (on the right), or the algorithm does not give a proper curve.
+
 <p align="center">
 <img src="https://user-images.githubusercontent.com/59674595/206001503-9a307831-5c4c-4587-bd73-0d82d50846ec.png" width="500">
 </p>
+
+
+* An even better method is to calculate the Silhouette coefficient, or the Silhouette width, s. It is defined as $s = (b-a) \over max(a,b)$, where $a$ stands for the average intra-cluster distance and $b$ stands for the average nearest-cluster distance. If all Silhouette values of data points from a cluster are close to 1, the cluster is well identified. Otherwise, a Silhouette width near -1 indicates that the data point may not belong to this specific cluster. is By calculating the average Silhouette width with different choices of k, we can find out the optimal cluster number with the highest $s$. 
+
+* Some other approaches include cross-validation, which splits the data into two or more parts, with one part used for clustering and other parts for validation. Based on the concept of cluster stability, a stable clustering algorithm should produce similar results with data originating from the same source. 
+
+
+* The information criterion approach is a model selection technique that can also be used to determine number of clusters. It makes decisions among models with different number of parameters while considering both the fit of models and their complexity. 
+
+https://www.researchgate.net/profile/Trupti-Kodinariya/publication/313554124_Review_on_Determining_of_Cluster_in_K-means_Clustering/links/5789fda408ae59aa667931d2/Review-on-Determining-of-Cluster-in-K-means-Clustering.pdf
+
 
 ***
 
