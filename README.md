@@ -1,11 +1,23 @@
-# BENG-183
+# BENG-183: K-means Clustering
+
 **What Is K-Means Clustering?**
 
 K-means clustering is an unsuperivised machine learning algorithm used to cluster data. K-means clustering groups datapoints into k# of clusters centered around centroids (the center of each cluster). 
 
-**Why is k-means clustering important?**
+**Machine Learning Overview**
 
+Machine Learning is a type of AI that causes software to self-improve and more accurately predict outcomes without being programmed to do so externally.
 
+Supervised vs. Unsupervised Learning
+* Supervised learning involves the implementation of a labeled dataset and a test dataset. The labeled dataset is pre-labeled bye the user in order to ‘teach’ the algorithm how to deal with the test dataset.
+* Unsupervised learning involves the implementation of machine learning algorithms to analyze and cluster datasets. Unsupervised learning algorithms complete this without the need for pre-labeling, and are therefore unsupervised.
+
+**Selection of k**
+<p align="center">
+<img src="https://user-images.githubusercontent.com/59674595/206001503-9a307831-5c4c-4587-bd73-0d82d50846ec.png" width="500">
+</p>
+
+***
 
 **Algorithm**
 
