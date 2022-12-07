@@ -16,24 +16,19 @@ K-means clustering is an unsuperivised machine learning algorithm used to cluste
 
 There are many different approaches used for selecting k. 
 
-* One simple way is to set k as $\sqrt(\frac{n}{2})$, where n is the size of the data set. 
+* One simple way is to set k as $\sqrt \frac{n}{2}$, where n is the size of the data set. 
 
-* The elbow method is a conventional way of determining the number of clusters. As shown in the figure, it finds the point where the clustering score becomes stabilized. The corresponding x-corrdinate value gives us the optimal cluster number. There are cases where the “elbow” shape is not obvious (on the right), or the algorithm does not give a proper curve.
+* The elbow method is a conventional way of determining the number of clusters. As shown in the figure below[1], it finds the point where the clustering score becomes stabilized. The corresponding x-corrdinate value gives us the optimal cluster number. There are cases where the “elbow” shape is not obvious (on the right), or the algorithm does not give a proper curve.
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/59674595/206001503-9a307831-5c4c-4587-bd73-0d82d50846ec.png" width="500">
 </p>
 
-
-* An even better method is to calculate the Silhouette coefficient, or the Silhouette width, s. It is defined as $s = (b-a) \over max(a,b)$, where $a$ stands for the average intra-cluster distance and $b$ stands for the average nearest-cluster distance. If all Silhouette values of data points from a cluster are close to 1, the cluster is well identified. Otherwise, a Silhouette width near -1 indicates that the data point may not belong to this specific cluster. is By calculating the average Silhouette width with different choices of k, we can find out the optimal cluster number with the highest $s$. 
+* An even better method is to calculate the Silhouette coefficient, or the Silhouette width, $s$. It is defined as $s = {(b-a) \over max(a,b)}$, where $a$ stands for the average intra-cluster distance and $b$ stands for the average nearest-cluster distance. If all Silhouette values of data points from a cluster are close to 1, the cluster is well identified. Otherwise, a Silhouette width near -1 indicates that the data point may not belong to this specific cluster[2]. By calculating the average Silhouette width with different choices of k, we can find out the optimal cluster number with the highest $s$. 
 
 * Some other approaches include cross-validation, which splits the data into two or more parts, with one part used for clustering and other parts for validation. Based on the concept of cluster stability, a stable clustering algorithm should produce similar results with data originating from the same source. 
 
-
 * The information criterion approach is a model selection technique that can also be used to determine number of clusters. It makes decisions among models with different number of parameters while considering both the fit of models and their complexity. 
-
-https://www.researchgate.net/profile/Trupti-Kodinariya/publication/313554124_Review_on_Determining_of_Cluster_in_K-means_Clustering/links/5789fda408ae59aa667931d2/Review-on-Determining-of-Cluster-in-K-means-Clustering.pdf
-
 
 ***
 
@@ -64,8 +59,11 @@ Determines when iteration ceases. Convergence occurs when there is no longer any
 
 
 **Improving the Algorithm**
+
 A heavy focus of improving the algorithm is on the initialization of centroids. Apart from randomly select the initial centroids, other techniques are adopted by scientists as well. One of these include generating random partitions, that is, all the points are put into random clusters and the centroids are calculated afterwards. This works especially well when the clusters highly overlap, but in other cases randomization still has its advantages. 
+
 One another way is the furthest point heuristic, also known as Maxmin. An arbitrary point is picked as the first centroid, then for each of the following centroids, the point that is furthest from its nearest existing centroid is selected. 
+
 When initialization is random, repeating k-means can also significantly increase the accuracy of the clustering result. And if the clusters are separated, initialization dominates the performance of the algorithm. 
 
 ***
@@ -91,10 +89,6 @@ When initialization is random, repeating k-means can also significantly increase
 - Trouble with messy data
   * K means clustering generates uniform clusters, so it does not function well for unevenly spread data. For data of different density, the clustering would not always be the “best-fit”. The algorithm cannot nicely handle outliers either, and the resulted pattern would be vague. 
 
-
-
-Source: Pasi Franti, Sami Sieranoja. How much can k-means be improved by using better initialization and repeats?, Pattern Recognition, Volume 93, 2019, Pages 95-112, ISSN 0031-3203, https://doi.org/10.1016/j.patcog.2019.04.014.
-
 ***
 
 **Applications**
@@ -107,13 +101,13 @@ K-means Clustering is a very useful and applicable algorithm both in biology and
 ><details>
 ><summary>1. Pre-processing</summary>
 ><br>
-> First, the quality of each read needs to be checked. To check the quality of reads, a tool called FASTQC is used. FASTQC provides a report on the quality of the data, and if the data is deemed good quality the data is now ready to be aligned to the reference genome. There are many tools to perform alignment, one of those is STAR (Spliced Transcripts Alignment to a Reference). The final step of processing involves counting the number of reads that map to each gene. STAR stores the aligned data in a BAM file, there are tools such as featureCounts which take in a BAM file (the alignment output) and output a count matrix (number of reads per gene). (https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/05_counting_reads.html)
+> First, the quality of each read needs to be checked. To check the quality of reads, a tool called FASTQC is used. FASTQC provides a report on the quality of the data, and if the data is deemed good quality the data is now ready to be aligned to the reference genome. There are many tools to perform alignment, one of those is STAR (Spliced Transcripts Alignment to a Reference). The final step of processing involves counting the number of reads that map to each gene. STAR stores the aligned data in a BAM file, there are tools such as featureCounts which take in a BAM file (the alignment output) and output a count matrix (number of reads per gene). See [3] for further details.
 ></details>
 >
 ><details>
 ><summary>2. Normalization</summary>
 ><br>
->The data must be normalized prior to clustering to remove any bias introduced into the data by different factors including, but not limited to, gene length and GC content. One useful tool to normalize scRNA-seq data is scTransform, a function in Seurat. https://blog.bioturing.com/2022/01/27/a-guide-to-scrna-seq-normalization/#:~:text=What%20is%20scRNA%2DSeq%20Normalization,level%20of%20biological%20gene%20expression. 
+>The data must be normalized prior to clustering to remove any bias introduced into the data by different factors including, but not limited to, gene length and GC content[4]. One useful tool to normalize scRNA-seq data is scTransform, a function in Seurat. 
 ></details>
 >
 ><details>
@@ -128,4 +122,15 @@ K-means Clustering is a very useful and applicable algorithm both in biology and
 >At last, the data is ready to be clustered (using k-means clustering)! Clustering results depend on the value of k chosen. K represents the number of clusters. First, each centroid (the center of each cluster) is randomly assigned to the position of a data point. Next, the distance between each centroid and each data point is measured. Then, the data points are assigned to the cluster in which they are closest to (the smallest eucladian distance between a datapoint and a centroid). The algorithm continues until convergence is achieved. See the algorithm section for a more detailed description of how the algorithm works. The final output of the algorithm is the dataset clustered into k # of clusters with each unique data point assigned to a cluster.
 ></details>
 
-**Python Packages**
+***
+
+**Citations**
+
+1. https://www.researchgate.net/profile/Trupti-Kodinariya/publication/313554124_Review_on_Determining_of_Cluster_in_K-means_Clustering/links/5789fda408ae59aa667931d2/Review-on-Determining-of-Cluster-in-K-means-Clustering.pdf
+2. Pasi Franti, Sami Sieranoja. How much can k-means be improved by using better initialization and repeats?, Pattern Recognition, Volume 93, 2019, Pages 95-112, ISSN 0031-3203, https://doi.org/10.1016/j.patcog.2019.04.014.
+3. https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/05_counting_reads.html
+4. https://blog.bioturing.com/2022/01/27/a-guide-to-scrna-seq-normalization/#:~:text=What%20is%20scRNA%2DSeq%20Normalization,level%20of%20biological%20gene%20expression.
+
+
+
+
